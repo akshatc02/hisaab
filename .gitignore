@@ -1,0 +1,9 @@
+.next/
+node_modules/
+data/
+.env.local
+*.db
+.vercel
+.DS_Store
+.claude/settings.local.json
+tsconfig.tsbuildinfo
