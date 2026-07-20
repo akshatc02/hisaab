@@ -38,7 +38,7 @@ export default function IroningPage() {
 
   useEffect(() => {
     fetch('/api/ironing').then(async (r) => {
-      if (r.status === 401) { router.push('/login'); return; }
+      if (r.status === 401) { await fetch('/api/auth/logout', { method: 'POST' }); router.push('/login'); return; }
       setBatches(await r.json());
       setLoading(false);
     });

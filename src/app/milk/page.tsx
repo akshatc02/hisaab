@@ -47,7 +47,7 @@ export default function MilkPage() {
   const loadEntries = useCallback(async () => {
     setLoading(true);
     const res = await fetch(`/api/milk?year=${year}&month=${month}`);
-    if (res.status === 401) { router.push('/login'); return; }
+    if (res.status === 401) { await fetch('/api/auth/logout', { method: 'POST' }); router.push('/login'); return; }
     setEntries(await res.json());
     setLoading(false);
   }, [year, month, router]);

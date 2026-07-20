@@ -46,6 +46,7 @@ export default function DashboardPage() {
       ]);
 
       if (ironRes.status === 401 || milkRes.status === 401) {
+        await fetch('/api/auth/logout', { method: 'POST' });
         router.push('/login');
         return;
       }

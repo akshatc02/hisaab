@@ -17,7 +17,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     fetch('/api/settings').then(async (r) => {
-      if (r.status === 401) { router.push('/login'); return; }
+      if (r.status === 401) { await fetch('/api/auth/logout', { method: 'POST' }); router.push('/login'); return; }
       const d = await r.json();
       setIroningRate(d.ironing_rate || '0');
       setMilkRate(d.milk_rate || '0');

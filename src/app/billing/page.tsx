@@ -54,7 +54,7 @@ export default function BillingPage() {
   const load = useCallback(async () => {
     setLoading(true);
     const res = await fetch(`/api/billing?year=${year}&month=${month}`);
-    if (res.status === 401) { router.push('/login'); return; }
+    if (res.status === 401) { await fetch('/api/auth/logout', { method: 'POST' }); router.push('/login'); return; }
     setData(await res.json());
     setLoading(false);
   }, [year, month, router]);

@@ -36,7 +36,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
 
   useEffect(() => {
     fetch(`/api/ironing/${params.id}`).then(async (r) => {
-      if (r.status === 401) { router.push('/login'); return; }
+      if (r.status === 401) { await fetch('/api/auth/logout', { method: 'POST' }); router.push('/login'); return; }
       if (r.status === 404) { router.push('/ironing'); return; }
       const data = await r.json();
       setBatch(data);
